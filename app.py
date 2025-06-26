@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
 import yfinance as yf 
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
-    return "Welcome to the Stock Viewer app!"
+    return jsonify({"Hello": "Welcome to the Stock Price API!"})
 
 @app.route('/stock/<ticker>')
 def stock_view(ticker):
@@ -18,3 +20,4 @@ def stock_view(ticker):
 
 if __name__ == '__main__':
     app.run()
+    
