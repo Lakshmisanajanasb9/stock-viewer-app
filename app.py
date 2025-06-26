@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return jsonify({"Hello": "Welcome to the Stock Price API!"})
+    return jsonify({"Hello!": "Welcome to the Stock Price API!"})
 
 @app.route('/stock/<ticker>')
 def stock_view(ticker):
