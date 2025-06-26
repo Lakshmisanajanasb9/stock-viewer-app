@@ -48,9 +48,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
@@ -68,13 +65,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4A1AF30E14084418BA4CC3439DE45F2A }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_58FA7175C71F46ABAD34666ED2E52C5B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F1E4F716C91341ABBA6971D9AD10D7B0 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_ECE782919CDF493B8B00D3210CCBB29C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B41E7BD06AB248F4AB93631B83E843A1 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DFB5C36863F0480692D5DA898DEA50FF }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'StockView'
+          slot-name: 'Production'
           
